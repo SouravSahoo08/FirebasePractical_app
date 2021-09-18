@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         map.put("branch","CSE");
         FirebaseDatabase.getInstance().getReference().child("Sourav sahoo").child("info").updateChildren(map);*/
 
+        //getting input and showing it on list view
         inputBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
