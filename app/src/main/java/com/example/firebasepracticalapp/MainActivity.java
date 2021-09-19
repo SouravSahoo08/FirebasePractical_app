@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       /*
+       
                    //-------------------------- FIREBASE REALTIME DATABASE ----------------------------------
                 //---------------------------- ADDING DATA TO REALTIME DATA BASE -----------------------------
 
@@ -119,12 +119,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        */
+        
 
         // ------------------------------------------- CLOUD FIRESTORE ----------------------------------------
         // -------------------------- ADDING COLLECTIONS AND DOCUMENTS TO FIRESTORE ----------------------------
 
-        /*FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String , Object> city = new HashMap<>();
         city.put("Name","Bhubaneswar");
         city.put("State","Odisha");
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-        */
+        
 
         // ------------------------------ UPLOADING FILE TO DATABASE STORAGE -----------------------------
 
