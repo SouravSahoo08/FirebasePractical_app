@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private Button logout,inputBtn;
@@ -42,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       /* //adding data to realtime data base
+       /*       //-------------------------- Firebase Realtime Database ----------------------------------
+                //----------------------------adding data to realtime data base-----------------------------
+
         FirebaseDatabase.getInstance().getReference().child("Sourav sahoo")
                                                     .child("Android").setValue("Java");
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         map.put("Name","sourav kumar sahoo");
         map.put("clg","Trident");
         map.put("branch","CSE");
-        FirebaseDatabase.getInstance().getReference().child("Sourav sahoo").child("info").updateChildren(map);*/
+        FirebaseDatabase.getInstance().getReference().child("Sourav sahoo").child("info").updateChildren(map);
 
         //getting input and showing it on list view
         inputBtn.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +81,38 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //-----------------------------------getting data from a set of data--------------------------------------
+
+        ArrayList<String> list = new ArrayList<>();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.list,list);
+        infoList.setAdapter(adapter);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Sourav sahoo").child("credentials");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for(DataSnapshot snap : snapshot.getChildren()){
+                    Information info = snap.getValue(Information.class);
+                    String txt=null;
+                    if(info!=null)
+                        txt = info.getEmail() + " : " + info.getname();
+                    list.add(txt);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        */
+
+        // ------------------------------------------- Cloud Firestore ----------------------------------------
+
+
 
     }
 }
